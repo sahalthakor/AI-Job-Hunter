@@ -33,3 +33,13 @@ body {
   background: linear-gradient(180deg, rgba(99, 102, 241, 0.7), rgba(168, 85, 247, 0.7));
   border-radius: 999px;
 }
+
+
+/* Mobile viewport and safe-area defaults */
+:root {
+  color-scheme: light;
+}
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+}
