@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+node_modules/
+dist/
+build/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+uploads/
+resumes/

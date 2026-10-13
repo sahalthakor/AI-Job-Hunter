@@ -1,0 +1,10 @@
+/* JobMatching is primarily styled from App.css.
+   This file exists for page-local hooks and future extensions. */
+
+.job-matching-page .primary-button {
+  text-decoration: none;
+}
+
+.job-matching-page .primary-button:disabled {
+  pointer-events: none;
+}
