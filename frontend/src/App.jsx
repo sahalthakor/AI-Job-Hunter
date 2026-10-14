@@ -3,9 +3,12 @@ import "./App.css";
 import Auth from "./Auth";
 import JobMatching from "./pages/JobMatching";
 
-const API_BASE_URL =
+// Production API URL is used on Vercel. For local development, set
+// VITE_API_BASE_URL=http://127.0.0.1:8000 in frontend/.env.local.
+const API_BASE_URL = (
   import.meta.env.VITE_API_BASE_URL ||
-  "http://127.0.0.1:8000";
+  "https://ai-job-hunter-api-zui3.onrender.com"
+).replace(/\/+$/, "");
 
 async function apiFetch(endpoint, options = {}) {
   const token =
@@ -39,7 +42,13 @@ async function apiFetch(endpoint, options = {}) {
 
     return response;
   } catch (error) {
-    console.error("Network or API call failed:", error);
+    console.error(`Network or API call failed (${API_BASE_URL}${endpoint}):`, error);
+    // Give a more useful message than the browser's generic "Failed to fetch".
+    if (error instanceof TypeError) {
+      throw new Error(
+        `Cannot connect to the AI Job Hunter API at ${API_BASE_URL}. Check that the Render service is live, VITE_API_BASE_URL is correct in Vercel, and the backend allows this Vercel domain through CORS.`
+      );
+    }
     throw error;
   }
 }
